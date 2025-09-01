@@ -101,8 +101,9 @@ function buildWhatsAppMessage(p, extra = '') {
 
 function openWhatsAppWith(text) {
   const redirectPage = `redirect.html?msg=${encodeURIComponent(text)}`;
-  window.open(redirectPage, '_blank', 'noopener,noreferrer');
+  window.location.href = redirectPage; // <-- same tab me redirect karega
 }
+
 
 
 
@@ -144,9 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       const detailsBtn = document.getElementById('detailsWhatsAppBtn');
       detailsBtn.onclick = () => {
-        // const extra = prompt('Add a note (your name / requirements). Optional:', '');
-        const msg = buildWhatsAppMessage(prop,'');
+        if(action === 'whatsapp'){
+           const msg = buildWhatsAppMessage(prop,'');
         openWhatsAppWith(msg);
+        }
+        // const extra = prompt('Add a note (your name / requirements). Optional:', '');
+      
       };
       const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
       modal.show();
