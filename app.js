@@ -179,10 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       const detailsBtn = document.getElementById("detailsWhatsAppBtn");
       detailsBtn.onclick = () => {
-        if (action === "details") {
-          const msg = buildWhatsAppMessage(prop, "I want more details");
-          openWhatsAppWith(msg);
-        }
+        const msg = buildWhatsAppMessage(prop, "I want more details");
+        // openWhatsAppWith(msg);
+
+        // const extra = prompt('Add a note (your name / requirements). Optional:', '');
+        // const msg = buildWhatsAppMessage(prop, extra || '');
+        openWhatsAppWith(msg);
       };
       const modal = new bootstrap.Modal(
         document.getElementById("detailsModal")
