@@ -39,20 +39,21 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const propertyMsg = urlParams.get('msg') || '';
-
     document.getElementById('userMsg').value = propertyMsg;
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const name = document.getElementById('userName').value.trim();
       const phone = document.getElementById('userPhone').value.trim();
       const msg = document.getElementById('userMsg').value.trim();
-      
-      const finalMsg = `Name: ${name}%0APhone: ${phone}%0A${msg}`;
-      const agentNumber = "919142936999"; // replace with your WhatsApp number
+
+      // Encode user details to make them WhatsApp safe
+      const finalMsg = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n${msg}`);
+      const agentNumber = "919142936999"; // YOUR WhatsApp number
       const whatsappURL = `https://wa.me/${agentNumber}?text=${finalMsg}`;
-      
+
+      // Open chat with your number + user's details in message
       window.open(whatsappURL, '_blank');
     });
   </script>

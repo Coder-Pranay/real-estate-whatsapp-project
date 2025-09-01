@@ -3,7 +3,7 @@
  * Replace this with YOUR WhatsApp number (countrycode + number, no plus, no spaces).
  * Example (India): 919876543210
  */
-const AGENT_WHATSAPP_NUMBER = '919142936999'; // <-- CHANGE THIS!
+const AGENT_WHATSAPP_NUMBER = '9142936999'; // <-- CHANGE THIS!
 
 // --------- DATA (Demo) ---------
 const properties = [
