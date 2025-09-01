@@ -127,13 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const msg = buildWhatsAppMessage(prop, '');
   openWhatsAppWith(msg);
 }
-
-detailsBtn.onclick = () => {
-  const msg = buildWhatsAppMessage(prop, '');
-  openWhatsAppWith(msg);
-};
-
-
     if (action === 'details') {
       const body = document.getElementById('detailsBody');
       document.getElementById('detailsTitle').textContent = prop.title;
