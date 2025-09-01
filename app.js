@@ -178,12 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
       const detailsBtn = document.getElementById("detailsWhatsAppBtn");
-      detailsBtn.onclick = () => {
+      // detailsBtn.onclick = () => {
         if (action === "whatsapp") {
           const msg = buildWhatsAppMessage(prop, "");
           openWhatsAppWith(msg); // direct redirect.html page me jaaye
-        }
-      };
+        };
+      // };
 
       // const extra = prompt('Add a note (your name / requirements). Optional:', '');
       const modal = new bootstrap.Modal(
