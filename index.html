@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Real Estate Listings | WhatsApp Enquiry</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#"><i class="bi bi-house-door"></i> HomeVista</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+          <li class="nav-item"><a class="nav-link" href="#listings">Listings</a></li>
+          <li class="nav-item"><a class="btn btn-dark rounded-pill px-3" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="py-5 bg-light border-bottom">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <h1 class="display-5 fw-bold lh-1">Find your next home</h1>
+          <p class="lead text-secondary">Browse hand-picked properties and ping the agent instantly on WhatsApp. No sign-up needed.</p>
+          <a href="#listings" class="btn btn-primary btn-lg rounded-pill">Browse Properties</a>
+        </div>
+        <div class="col-lg-5 text-center">
+          <img class="img-fluid rounded-4 shadow-sm" alt="Modern house" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200&auto=format&fit=crop">
+        </div>
+      </div>
+    </div>
+  </header>
+
+<div class="dropdown w-100">
+  <button class="btn btn-light w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+    All Cities
+  </button>
+  <ul class="dropdown-menu w-100">
+    <li><a class="dropdown-item" href="#" data-value="">All Cities</a></li>
+    <li><a class="dropdown-item" href="#" data-value="pune">Pune</a></li>
+    <li><a class="dropdown-item" href="#" data-value="bengaluru">Bengaluru</a></li>
+    <li><a class="dropdown-item" href="#" data-value="mumbai">Mumbai</a></li>
+  </ul>
+</div>
+
+  <div class="dropdown w-100" id="budgetDropdown">
+  <button class="btn btn-light w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+    All Budgets
+  </button>
+  <ul class="dropdown-menu w-100">
+    <li><a class="dropdown-item" href="#" data-value="">All Budgets</a></li>
+    <li><a class="dropdown-item" href="#" data-value="low">Below ₹50L</a></li>
+    <li><a class="dropdown-item" href="#" data-value="mid">₹50L – ₹1Cr</a></li>
+    <li><a class="dropdown-item" href="#" data-value="high">Above ₹1Cr</a></li>
+  </ul>
+</div>
+
+
+  <!-- Listings -->
+  <main class="py-5" id="listings">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 m-0">Featured Listings</h2>
+        <div class="d-flex gap-2">
+          <input id="searchInput" class="form-control" placeholder="Search by city or title">
+          <button id="clearSearch" class="btn btn-outline-secondary">Clear</button>
+        </div>
+      </div>
+      <div id="propertyList" class="row g-4"></div>
+    </div>
+  </main>
+
+  <!-- Contact (generic WhatsApp form) -->
+  <section class="py-5 bg-light border-top" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="h4 mb-3">Quick Enquiry (WhatsApp)</h3>
+              <p class="text-secondary mb-4">Send us a WhatsApp with your details and requirements. We’ll get back to you.</p>
+              <form id="waForm" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Your Name</label>
+                  <input id="name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone / Email (optional)</label>
+                  <input id="contactField" class="form-control" placeholder="+91-98765..." >
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  <textarea id="message" class="form-control" rows="3" placeholder="e.g., Looking for 2BHK in Kothrud, Pune within 75L"></textarea>
+                </div>
+                <div class="col-12 d-flex gap-2">
+                  <button type="submit" class="btn btn-success"><i class="bi bi-whatsapp"></i> Send on WhatsApp</button>
+                  <small class="text-secondary align-self-center">Opens WhatsApp with your message pre-filled. You’ll tap “Send”.</small>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 border-top bg-white">
+    <div class="container text-center small text-secondary">
+      © <span id="year"></span> HomeVista · Demo project
+    </div>
+  </footer>
+
+  <!-- Property Details Modal -->
+  <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsTitle">Property Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="detailsBody">
+          <!-- Filled by JS -->
+        </div>
+        <div class="modal-footer">
+          <button id="detailsWhatsAppBtn" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp Agent</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
