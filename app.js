@@ -143,11 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
       const detailsBtn = document.getElementById('detailsWhatsAppBtn');
-      detailsBtn.onclick = () => {
-        const extra = prompt('Add a note (your name / requirements). Optional:', '');
-        const msg = buildWhatsAppMessage(prop, extra || '');
-        openWhatsAppWith(msg);
-      };
+      // detailsBtn.onclick = () => {
+      //   const extra = prompt('Add a note (your name / requirements). Optional:', '');
+      //   const msg = buildWhatsAppMessage(prop, extra || '');
+      //   openWhatsAppWith(msg);
+      // };
       const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
       modal.show();
 
