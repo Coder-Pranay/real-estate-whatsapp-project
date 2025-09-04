@@ -1,5 +1,6 @@
 // --------- CONFIG ---------
-const AGENT_WHATSAPP_NUMBER = "9142936999"; // <-- CHANGE THIS!
+const agentNumber = "919142936999"; // or the one you prefer
+
 
 // --------- DATA (Demo) ---------
 const properties = [
@@ -53,6 +54,40 @@ const properties = [
       "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop",
     description: "Spacious corner flat near IT park; 2 covered parkings.",
   },
+  {
+  id: "DEL-005",
+  title: "Luxury 3 BHK Apartment",
+  location: "South Delhi",
+  price: 21000000,
+  beds: 3,
+  baths: 3,
+  area: 1600,
+  image: "https://images.unsplash.com/photo-1600607687920-4e9c36d4c5c6?q=80&w=1200&auto=format&fit=crop",
+  description: "Premium apartment with central AC, near metro and shopping mall.",
+},
+{
+  id: "GOA-006",
+  title: "Beachside Villa",
+  location: "Calangute, Goa",
+  price: 35000000,
+  beds: 5,
+  baths: 4,
+  area: 3200,
+  image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1200&auto=format&fit=crop",
+  description: "Beautiful villa with private pool and sea view.",
+},
+{
+  id: "HYD-007",
+  title: "Affordable 2 BHK Flat",
+  location: "Gachibowli, Hyderabad",
+  price: 6200000,
+  beds: 2,
+  baths: 2,
+  area: 900,
+  image: "https://images.unsplash.com/photo-1572120360610-d971b9b78825?q=80&w=1200&auto=format&fit=crop",
+  description: "Budget-friendly apartment close to IT hubs and schools.",
+},
+
 ];
 
 // --------- HELPERS ---------
@@ -182,24 +217,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Search
-  const searchInput = document.getElementById("searchInput");
-  const clearSearch = document.getElementById("clearSearch");
-  function doSearch() {
-    const q = searchInput.value.toLowerCase().trim();
-    const filtered = properties.filter(
-      (p) =>
-        p.title.toLowerCase().includes(q) ||
-        p.location.toLowerCase().includes(q) ||
-        p.id.toLowerCase().includes(q)
-    );
-    renderList(filtered);
-  }
-  searchInput.addEventListener("input", doSearch);
-  clearSearch.addEventListener("click", () => {
-    searchInput.value = "";
-    doSearch();
-  });
+// --- Debounced Search (200ms) ---
+const searchInput = document.getElementById("searchInput");
+const clearSearch = document.getElementById("clearSearch");
+
+let t = null;
+function doSearch() {
+  const q = searchInput.value.toLowerCase().trim();
+  const filtered = properties.filter(
+    (p) =>
+      p.title.toLowerCase().includes(q) ||
+      p.location.toLowerCase().includes(q) ||
+      p.id.toLowerCase().includes(q)
+  );
+  renderList(filtered);
+}
+
+searchInput.addEventListener("input", () => {
+  clearTimeout(t);
+  t = setTimeout(doSearch, 200);
+});
+
+clearSearch.addEventListener("click", () => {
+  searchInput.value = "";
+  doSearch();
+});
 
   // Filters
   let selectedCity = "";

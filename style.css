@@ -1,145 +1,145 @@
-/* Minimal custom styling */
-:root {
+/* ==== Premium Minimal Base ==== */
+:root{
   --brand: #0d6efd;
+  --radius: 12px;
+  --shadow-sm: 0 6px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
 }
-body { background-color: #fff; }
-.navbar .navbar-brand { letter-spacing: .3px; }
-.card-property img {
-  height: 210px;
-  object-fit: cover;
-}
-.badge-soft {
-  background-color: rgba(13,110,253,.1);
-  color: #0d6efd;
-  border: 1px solid rgba(13,110,253,.18);
-}
-.price {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-.feature i { margin-right: .35rem; }
-#propertyList .card { transition: transform .2s ease, box-shadow .2s ease; }
-#propertyList .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
-
-
-/* General reset */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-  margin: 0;
-  padding: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: #6b88b226;  /* thoda light gray-blue */
+  color: #6e7377;
 }
 
-/* Navbar or header */
-.navbar {
-  background-color: #0d6efd;
+
+/* Navbar stays light (per HTML) */
+.navbar.bg-white{
+  backdrop-filter: saturate(180%) blur(8px);
 }
-.navbar .navbar-brand, 
-.navbar .nav-link {
-  color: #fff !important;
-  font-weight: 500;
-}
-.navbar .nav-link:hover {
-  color: #ffc107 !important;
+header {
+  background: linear-gradient(135deg, #4d5fd4b1 0%, #ebedee 100%);
+  border-bottom: 1px solid #e6ebf0;
 }
 
-/* Property cards */
-.card-property {
-  border: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 12px;
-}
-.card-property img {
-  height: 200px;
+
+/* Hero image polish */
+header img{
+  aspect-ratio: 16/10;
   object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-.card-property:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
-.card-property .badge-soft {
-  background-color: #e9ecef;
-  font-size: 0.8rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
 }
 
-/* Features inside card */
-.feature {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #555;
+/* Cards */
+.card-property{
+  border: 1px solid #eef1f4;
+  border-radius: var(--radius);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.card-property:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+  border-color: #e6ebf0;
+}
+.card-property img{
+  height: auto;        /* remove fixed height feel */
+  aspect-ratio: 16/9;  /* consistent media size */
+  object-fit: cover;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
 }
 
-/* Price style */
-.price {
-  font-weight: bold;
-  color: #198754;
-  font-size: 1.1rem;
-}
-
-/* Search bar + filters */
-#searchInput, #cityFilter, #budgetFilter {
-  border-radius: 8px;
-  border: 1px solid #ced4da;
-  padding: 8px 12px;
-}
-#clearSearch {
-  cursor: pointer;
-  color: #6c757d;
-}
-#clearSearch:hover {
-  color: #000;
-}
-/* Filter dropdowns */
-/* Make filters look consistent */
-#cityFilter, #budgetFilter {
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 0.95rem;
-}
-
-/* Add spacing between stacked filters on mobile */
-
-/* Ensure dropdowns behave nicely on small screens */
-@media (max-width: 576px) {
-  #cityFilter, #budgetFilter {
-    width: 100% !important;
-    max-width: 100%;
-    font-size: 16px; /* prevent iOS zooming */
-  }
-}
-
-/* Make sure no parent cuts off the dropdown */
-.container, .row, .col-12, .col-md-6 {
-  overflow: visible !important;
-}
-
-
-
-
-
-/* Modal styles */
-.modal-content {
-  border-radius: 10px;
-}
-.modal-header {
-  background-color: #0d6efd;
-  color: #fff;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.modal-footer .btn-success {
+/* Badges */
+.badge-soft{
+  background: #eef5ff;
+  color: var(--brand);
+  border: 1px solid #d9e8ff;
   font-weight: 500;
+}
+
+/* Price */
+.price{
+  font-weight: 700;
+  color: #198754;
+  letter-spacing: .2px;
+}
+
+/* Little icon-text alignment */
+.feature{
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: #5c6670;
+}
+
+/* Form controls + buttons – rounded + focus ring */
+.form-control, .form-select{
+  border-radius: 10px;
+  border-color: #e3e6ea;
+}
+.form-control:focus, .form-select:focus{
+  border-color: var(--brand);
+  box-shadow: 0 0 0 .15rem rgba(13,110,253,.15);
+}
+.btn{
+  border-radius: 999px; /* pill look */
+}
+
+/* Dropdown polish */
+.dropdown-menu{
+  border-radius: 10px;
+  border: 1px solid #e6ebf0;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.dropdown-item{
+  padding: .55rem .9rem;
+}
+.dropdown-item.active, .dropdown-item:active{
+  background: #eaf2ff;
+  color: #0a58ca;
+}
+
+/* Section spacing */
+#listings{ background: #fff; }
+#listings .container{ padding-top: .25rem; }
+
+/* Modal */
+.modal-content{
+  border-radius: 14px;
+  border: 1px solid #eef1f4;
+  box-shadow: var(--shadow-lg);
+}
+.modal-header{
+  background: linear-gradient(90deg, #0d6efd, #4aa3ff);
+  color: #fff;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 
 /* Footer */
-footer {
-  padding: 15px 0;
-  text-align: center;
-  font-size: 0.9rem;
-  background-color: #fff;
-  border-top: 1px solid #ddd;
+footer{
+  background: #fff;
+  border-top: 1px solid #eef1f4;
+}
+
+/* Small hover for primary actions */
+.btn-outline-primary:hover{
+  box-shadow: 0 6px 16px rgba(13,110,253,.18);
+}
+.btn-success:hover{
+  box-shadow: 0 6px 16px rgba(25,135,84,.18);
+}
+
+#testimonials .card {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#testimonials .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+#testimonials img {
+  object-fit: cover;
 }
