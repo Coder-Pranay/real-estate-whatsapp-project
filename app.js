@@ -1,8 +1,4 @@
 // --------- CONFIG ---------
-/**
- * Replace this with YOUR WhatsApp number (countrycode + number, no plus, no spaces).
- * Example (India): 919876543210
- */
 const AGENT_WHATSAPP_NUMBER = "9142936999"; // <-- CHANGE THIS!
 
 // --------- DATA (Demo) ---------
@@ -116,7 +112,6 @@ function renderList(list) {
   wrap.innerHTML = list.map(createCard).join("");
 }
 
-// Build WhatsApp URL with a nice, informative message
 function buildWhatsAppMessage(p, extra = "") {
   const lines = [
     `Hello! I'm interested in this property.`,
@@ -132,7 +127,7 @@ function buildWhatsAppMessage(p, extra = "") {
 
 function openWhatsAppWith(text) {
   const redirectPage = `redirect.html?msg=${encodeURIComponent(text)}`;
-  window.location.href = redirectPage; // <-- same tab me redirect karega
+  window.location.href = redirectPage; // same tab me redirect.html khol dega
 }
 
 // --------- EVENTS ---------
@@ -142,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial render
   renderList(properties);
 
-  // Card button actions (event delegation)
+  // Card button actions
   document.getElementById("propertyList").addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-action]");
     if (!btn) return;
@@ -154,38 +149,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (action === "whatsapp") {
       const msg = buildWhatsAppMessage(prop, "");
-      openWhatsAppWith(msg);
+      openWhatsAppWith(msg); // redirect.html khol dega
     }
+
     if (action === "details") {
       const body = document.getElementById("detailsBody");
       document.getElementById("detailsTitle").textContent = prop.title;
       body.innerHTML = `
-        <img class="img-fluid rounded mb-3" src="${prop.image}" alt="${
-        prop.title
-      }">
+        <img class="img-fluid rounded mb-3" src="${prop.image}" alt="${prop.title}">
         <div class="row g-3">
           <div class="col-md-6"><strong>Property ID:</strong> ${prop.id}</div>
-          <div class="col-md-6"><strong>Location:</strong> ${
-            prop.location
-          }</div>
+          <div class="col-md-6"><strong>Location:</strong> ${prop.location}</div>
           <div class="col-md-6"><strong>Price:</strong> ${inr(prop.price)}</div>
           <div class="col-md-6"><strong>Area:</strong> ${prop.area} sq.ft</div>
           <div class="col-md-6"><strong>Beds:</strong> ${prop.beds}</div>
           <div class="col-md-6"><strong>Baths:</strong> ${prop.baths}</div>
-          <div class="col-12"><strong>Description:</strong> ${
-            prop.description
-          }</div>
+          <div class="col-12"><strong>Description:</strong> ${prop.description}</div>
         </div>
       `;
-      const detailsBtn = document.getElementById("detailsWhatsAppBtn");
-      // detailsBtn.onclick = () => {
-        if (action === "whatsapp") {
-          const msg = buildWhatsAppMessage(prop, "");
-          openWhatsAppWith(msg); // direct redirect.html page me jaaye
-        };
-      // };
 
-      // const extra = prompt('Add a note (your name / requirements). Optional:', '');
+      // ✅ Modal WhatsApp button
+      const detailsBtn = document.getElementById("detailsWhatsAppBtn");
+      detailsBtn.onclick = () => {
+        const msg = buildWhatsAppMessage(prop, ""); 
+        openWhatsAppWith(msg); // redirect.html khol dega
+      };
+
       const modal = new bootstrap.Modal(
         document.getElementById("detailsModal")
       );
@@ -212,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     doSearch();
   });
 
-  // --------- Filters ---------
+  // Filters
   let selectedCity = "";
   let selectedBudget = "";
 
